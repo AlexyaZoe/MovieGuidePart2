@@ -20,22 +20,22 @@ def load_movies(filename):
             for movie in initial_movies:
                 file.write(movie + "\n")
         return initial_movies
-def save_movies(filename, movie):
+def save_movies(filename, movies):
     with open(filename, "w") as file:
         for movie in movies:
             file.write(movie + "\n")
-def list_movies(movie):
+def list_movies(movies):
     if not movies:
         print("No movies in the list, please try adding.")
     else:
-        for i, movie in enumerate(movie, start=1):
-            print(f"[i]. [movie]")
+        for i, movie in enumerate(movies, start=1):
+            print(f"{i}. {movie}")
     print()
 def add_movie(movies, filename):
     movie = input("Enter the name of the movie you would lik to add to the list: ")
     movies.append(movie)
     save_movies(filename, movies) 
-    print(f"'[movie]' has been added to the list.\n")
+    print(f"'{movie}' has been added to the list.\n")
     list_movies(movies)
 def delete_movie(movies, filename):
     try:
@@ -43,7 +43,7 @@ def delete_movie(movies, filename):
         if 1 <= number <= len(movies):
             removed = movies.pop(number -1)
             save_movies(filename, movies)
-            print(f"[removed]' has been removed from the list.\n")
+            print(f"{removed}' has been removed from the list.\n")
             list_movies(movies) 
         else:
             print("Invalid Movie number selection, please try again.\n")
